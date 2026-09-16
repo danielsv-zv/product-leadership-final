@@ -1,0 +1,738 @@
+<title>Meridian Field Adoption Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+  :root {
+    --ink:      #1C1A17;
+    --ink-2:    #4A453D;
+    --ink-3:    #7D766A;
+    --rule:     #DCD7CE;
+    --rule-2:   #EAE6DF;
+    --ground:   #F7F5F1;
+    --surface:  #FFFFFF;
+    --accent:   #B03D0B;
+    --accent-2: #F2E4DA;
+    --gate:     #0E6F68;
+    --gate-2:   #DDEDEA;
+    --no:       #8A3324;
+
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink:      #F2EFE9;
+      --ink-2:    #C4BDB1;
+      --ink-3:    #918A7C;
+      --rule:     #3A352E;
+      --rule-2:   #2B2721;
+      --ground:   #16140F;
+      --surface:  #1E1B16;
+      --accent:   #E8845A;
+      --accent-2: #3A2318;
+      --gate:     #5FB9AF;
+      --gate-2:   #16302E;
+      --no:       #D98A76;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink:      #F2EFE9;
+    --ink-2:    #C4BDB1;
+    --ink-3:    #918A7C;
+    --rule:     #3A352E;
+    --rule-2:   #2B2721;
+    --ground:   #16140F;
+    --surface:  #1E1B16;
+    --accent:   #E8845A;
+    --accent-2: #3A2318;
+    --gate:     #5FB9AF;
+    --gate-2:   #16302E;
+    --no:       #D98A76;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    padding-block: 40px 64px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(30px, 5.2vw, 46px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.021em;
+    margin: 14px 0 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin: 12px 0 0;
+  }
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- north star strip ---------- */
+
+  .northstar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--surface);
+    margin-top: 28px;
+    overflow: hidden;
+  }
+
+  .okr {
+    flex: 1 1 210px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--rule-2);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .okr:last-child { border-right: 0; }
+
+  .okr-tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .okr-text { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+  .okr-move {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .okr-move .to { color: var(--accent); }
+
+  .objective {
+    flex: 1 1 100%;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--rule-2);
+    font-family: var(--f-display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.008em;
+  }
+  .objective span {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-right: 10px;
+  }
+
+  /* ---------- horizon bands ---------- */
+
+  .band { margin-top: 44px; }
+
+  .band-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+
+  .band-title {
+    font-family: var(--f-display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.014em;
+  }
+  .band-when {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .band-note {
+    font-size: 14px;
+    color: var(--ink-2);
+    flex: 1 1 100%;
+    margin-top: 4px;
+    max-width: 68ch;
+  }
+  .band-note em { color: var(--ink); font-style: italic; }
+
+  /* ---------- now: the three bets ---------- */
+
+  .bets { display: grid; gap: 1px; background: var(--rule-2); margin-top: 18px; }
+
+  .bet {
+    background: var(--surface);
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 1fr 232px;
+    gap: 8px 28px;
+    align-items: start;
+    border-left: 3px solid var(--accent);
+  }
+  .bet.gate { border-left-color: var(--gate); }
+
+  .bet-main { min-width: 0; }
+
+  .bet-claim {
+    font-family: var(--f-body);
+    font-size: 17.5px;
+    font-weight: 400;
+    line-height: 1.42;
+    letter-spacing: -0.003em;
+    margin: 0;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+  .bet-claim b { font-weight: 600; }
+
+  .bet-wager {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 9px 0 0;
+    padding-top: 9px;
+    border-top: 1px solid var(--rule-2);
+    max-width: 58ch;
+  }
+  .bet-wager b { font-weight: 600; color: var(--ink); }
+
+  .bet-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    align-items: center;
+  }
+
+  .chip {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    padding: 3px 7px;
+    border-radius: 2px;
+    background: var(--accent-2);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .chip.gate-chip { background: var(--gate-2); color: var(--gate); }
+  .chip.team {
+    background: transparent;
+    color: var(--ink-3);
+    border: 1px solid var(--rule);
+    font-weight: 500;
+  }
+
+  .signal {
+    border-left: 1px solid var(--rule-2);
+    padding-left: 20px;
+    align-self: stretch;
+  }
+  .signal-label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 7px;
+  }
+  .signal-text {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--ink-2);
+  }
+  .signal-text b {
+    font-family: var(--f-mono);
+    font-weight: 600;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  /* ---------- next: sequenced rows ---------- */
+
+  .rows { margin-top: 6px; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 26px 1fr 300px;
+    gap: 4px 22px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-2);
+    align-items: baseline;
+  }
+
+  .row-n {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .row-claim {
+    font-size: 16.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .row-src {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--ink-3);
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+  .row-why {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+  .row-why b { font-weight: 600; color: var(--ink); }
+
+  /* ---------- later: bet ledger ---------- */
+
+  .later-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+    gap: 1px;
+    background: var(--rule-2);
+    margin-top: 18px;
+    border: 1px solid var(--rule-2);
+  }
+
+  .later-item {
+    background: var(--surface);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .later-claim { font-size: 15px; font-weight: 600; line-height: 1.38; }
+  .later-status { font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+  .later-item.hot { border-top: 3px solid var(--gate); }
+  .later-item.hot .later-claim { color: var(--gate); }
+
+  /* ---------- hard nos ---------- */
+
+  .nos { margin-top: 18px; display: grid; gap: 14px; }
+
+  .no {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+  }
+  .no-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .no-mark {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--no);
+  }
+  .no-title {
+    font-family: var(--f-display);
+    font-size: 16.5px;
+    font-weight: 600;
+    letter-spacing: -0.008em;
+  }
+  .no-score {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+  }
+  .no-why { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); max-width: 78ch; }
+  .no-why b { font-weight: 600; color: var(--ink); }
+
+  /* ---------- the line ---------- */
+
+  .line {
+    margin-top: 44px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gate);
+    border-radius: 3px;
+  }
+  .line-label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gate);
+  }
+  .line p {
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 9px 0 0;
+    max-width: 72ch;
+    color: var(--ink-2);
+  }
+  .line p b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- footer ---------- */
+
+  .foot {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    text-transform: uppercase;
+  }
+
+  /* ---------- narrow ---------- */
+
+  @media (max-width: 720px) {
+    .bet { grid-template-columns: 1fr; gap: 14px; }
+    .signal {
+      border-left: 0;
+      border-top: 1px solid var(--rule-2);
+      padding-left: 0;
+      padding-top: 12px;
+    }
+    .row { grid-template-columns: 22px 1fr; }
+    .row-why { grid-column: 2; grid-row: auto; margin-top: 4px; }
+    .okr { border-right: 0; border-bottom: 1px solid var(--rule-2); }
+    .okr:last-child { border-bottom: 0; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Meridian Foundations · B2B</span>
+      <span>Module 2 · Deliverable 2</span>
+      <span>Outcome roadmap</span>
+      <span>Q4 2026 → Q3 2027</span>
+    </div>
+    <h1>The job site runs on Meridian,<br>not on a group text.</h1>
+    <p class="standfirst">
+      Every item below is an outcome we are betting on, not a feature we are shipping.
+      The Now column tests one wager — that field non-adoption is an <strong>effort</strong> problem —
+      and funds the research that could prove it wrong.
+    </p>
+  </header>
+
+  <section class="northstar" aria-label="Objective and key results">
+    <div class="objective"><span>OBJECTIVE</span>The job site runs on Meridian, not on a group text.</div>
+    <div class="okr">
+      <div class="okr-tag">KR1 · NORTH STAR</div>
+      <div class="okr-text">Weekly active field-role usage, 25 pilot projects</div>
+      <div class="okr-move">8% <span class="to">→ 60%</span></div>
+    </div>
+    <div class="okr">
+      <div class="okr-tag">KR2</div>
+      <div class="okr-text">Logs, photos and RFIs originating on a field device</div>
+      <div class="okr-move">5% <span class="to">→ 70%</span></div>
+    </div>
+    <div class="okr">
+      <div class="okr-tag">KR3</div>
+      <div class="okr-text">Median field observation to structured record</div>
+      <div class="okr-move">26 hrs <span class="to">→ &lt;10 min</span></div>
+    </div>
+  </section>
+
+  <!-- ============ NOW ============ -->
+  <section class="band">
+    <div class="band-head">
+      <span class="band-title">Now</span>
+      <span class="band-when">0–3 months · three bets, one question</span>
+      <p class="band-note">
+        All three share a single hypothesis and cost roughly one team-quarter combined.
+        Each is cheap enough to have been worth running <em>even if the hypothesis is wrong</em> —
+        which is why the fourth item, the evidence gate, runs alongside them rather than before them.
+      </p>
+    </div>
+
+    <div class="bets">
+
+      <article class="bet">
+        <div class="bet-main">
+          <p class="bet-claim">We bet that <b>cutting the daily log from 14 required fields to 4</b> will get a complete log filed before the truck leaves the gate, <b>for foremen closing out a shift</b>.</p>
+          <p class="bet-wager">The wager underneath: the form is what kills the log, not indifference. Four fields removes the abandonment point — and most of the 26-hour lag is a log postponed because it is too long to face at 4pm.</p>
+          <div class="bet-meta">
+            <span class="chip">ROCK 1</span>
+            <span class="chip">KR1</span>
+            <span class="chip">KR3</span>
+            <span class="chip team">Field Capture</span>
+            <span class="chip team">Impact 5 · Effort 1</span>
+          </div>
+        </div>
+        <div class="signal">
+          <span class="signal-label">Success signal</span>
+          <p class="signal-text">Log completion rate on pilot projects <b>≥ 70%</b>. Median observation-to-record under <b>4 hrs</b> by month 3, en route to 10 minutes.</p>
+        </div>
+      </article>
+
+      <article class="bet">
+        <div class="bet-main">
+          <p class="bet-claim">We bet that <b>letting a foreman mark up the photo he already took</b> will turn the camera roll into the record, <b>for field teams documenting an issue</b>.</p>
+          <p class="bet-wager">The wager underneath: the phone camera is our real competitor, and we win by absorbing it rather than replacing it. Markup makes the photo do the explaining — the fastest route to conversational capture without waiting on a dedicated app.</p>
+          <div class="bet-meta">
+            <span class="chip">ROCK 2</span>
+            <span class="chip">KR2</span>
+            <span class="chip">KR3</span>
+            <span class="chip team">Field Capture</span>
+            <span class="chip team">Impact 4 · Effort 2</span>
+          </div>
+        </div>
+        <div class="signal">
+          <span class="signal-label">Success signal</span>
+          <p class="signal-text"><b>≥ 40%</b> of photo documentation on pilot projects originates in-app rather than in the camera roll.</p>
+        </div>
+      </article>
+
+      <article class="bet">
+        <div class="bet-main">
+          <p class="bet-claim">We bet that <b>pushing schedule changes to the phone</b> will create the unprompted return visit, <b>for superintendents and foremen planning tomorrow</b>.</p>
+          <p class="bet-wager">The wager underneath: weekly-active is won by the return visit, not the first visit. This is the only item on the board that gives a field user a reason to open Meridian on a day nobody planned to.</p>
+          <div class="bet-meta">
+            <span class="chip">ROCK 3</span>
+            <span class="chip">KR1</span>
+            <span class="chip team">Platform · Field Capture</span>
+            <span class="chip team">Impact 3 · Effort 1</span>
+          </div>
+        </div>
+        <div class="signal">
+          <span class="signal-label">Success signal</span>
+          <p class="signal-text">Field-role weekly active <b>8% → 25%</b> on pilot projects. <b>≥ 30%</b> of sessions originate from a notification.</p>
+        </div>
+      </article>
+
+      <article class="bet gate">
+        <div class="bet-main">
+          <p class="bet-claim">Not a bet — the test. We learn whether the barrier is <b>effort</b> or <b>exposure</b>.</p>
+          <p class="bet-wager">All three bets above wager on effort. Two weeks, three active projects, shadowing superintendents and asking what a filed log has actually <b>cost</b> them. The M1 pressure-test produced the competing diagnosis: foremen may avoid the record because it exposes them, not because it is slow. This runs <b>in parallel</b> with the bets, not after them.</p>
+          <div class="bet-meta">
+            <span class="chip gate-chip">EVIDENCE GATE</span>
+            <span class="chip gate-chip">GOVERNS ALL OF NEXT</span>
+            <span class="chip team">PM (lead) · Research</span>
+          </div>
+        </div>
+        <div class="signal">
+          <span class="signal-label">Success signal</span>
+          <p class="signal-text">A written verdict by <b>week 3</b> that either confirms the effort hypothesis or reframes the roadmap from Next onward.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ NEXT ============ -->
+  <section class="band">
+    <div class="band-head">
+      <span class="band-title">Next</span>
+      <span class="band-when">3–6 months · sequenced behind the evidence</span>
+      <p class="band-note">Ordered by what the evidence gate unlocks, not by what was requested loudest.</p>
+    </div>
+
+    <div class="rows">
+
+      <div class="row">
+        <div class="row-n">01</div>
+        <div>
+          <p class="row-claim">Capture works for a foreman who is not at a desk and not on wifi.</p>
+          <p class="row-src">Offline-first + dedicated foreman app, merged</p>
+        </div>
+        <p class="row-why">The largest bet on the board, and the one the gate governs. Offline-first is <b>architectural</b>, so it must precede the dedicated app rather than be retrofitted into it — but neither starts until we know a foreman wants to file at all.</p>
+      </div>
+
+      <div class="row">
+        <div class="row-n">02</div>
+        <div>
+          <p class="row-claim">A spoken observation becomes a correctly-typed record without a foreman choosing the type.</p>
+          <p class="row-src">AI-assisted RFI drafting · the construction ontology</p>
+        </div>
+        <p class="row-why">This is the <b>M1 moat</b>. It is only defensible once there is real field capture volume to train and validate against — volume the Now bets create.</p>
+      </div>
+
+      <div class="row">
+        <div class="row-n">03</div>
+        <div>
+          <p class="row-claim">A superintendent sees field activity across their projects without asking for a report.</p>
+          <p class="row-src">Narrow read surface, field-manager scope only</p>
+        </div>
+        <p class="row-why">Serves the M1 management system — the weekly field activation review, cohorted by superintendent — <b>without reopening the reporting hard no</b>. Scoped to the field manager, never the exec.</p>
+      </div>
+
+      <div class="row">
+        <div class="row-n">04</div>
+        <div>
+          <p class="row-claim">The renewal conversation is held on adoption evidence, not on a dashboard.</p>
+          <p class="row-src">The answer to the executive reporting request</p>
+        </div>
+        <p class="row-why">Two at-risk renewals are real and dated. Handled with a <b>named exec sponsor and a committed date</b>, not with engineering capacity — but actively worked in this window, not deferred.</p>
+      </div>
+
+      <div class="row">
+        <div class="row-n">05</div>
+        <div>
+          <p class="row-claim">Two clients stop losing data at the Procore boundary.</p>
+          <p class="row-src">Broken import/export · customer success</p>
+        </div>
+        <p class="row-why">Genuine breakage, genuinely small. A <b>fill-gaps</b> item: it happens in the slack once the Rocks are moving, and never ahead of them.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ LATER ============ -->
+  <section class="band">
+    <div class="band-head">
+      <span class="band-title">Later</span>
+      <span class="band-when">6–12 months · bets, not commitments</span>
+      <p class="band-note">Each is strategically right and none is resourced. Listed so they stop being re-litigated every quarter.</p>
+    </div>
+
+    <div class="later-grid">
+      <div class="later-item hot">
+        <div class="later-claim">The record becomes protective for the foreman, not just legible to the firm.</div>
+        <div class="later-status">Contingent bet. If the evidence gate returns <em>exposure</em>, this is not a Later item — it becomes the strategy.</div>
+      </div>
+      <div class="later-item">
+        <div class="later-claim">Compliance obligations are met as a by-product of capture, not a separate workflow.</div>
+        <div class="later-status">Bet. Viable only once the ontology is reliable. Depends on Next 02.</div>
+      </div>
+      <div class="later-item">
+        <div class="later-claim">The back office reads the field record without the field feeling watched.</div>
+        <div class="later-status">Bet. Gated by the M1 hard no through Q3 2027. Data-model work deliberately not started early — doing it quietly does not change what it enables.</div>
+      </div>
+      <div class="later-item">
+        <div class="later-claim">Subcontractors join the record instead of sitting outside it.</div>
+        <div class="later-status">Bet. Outside Where-to-play until field adoption clears 60%.</div>
+      </div>
+      <div class="later-item">
+        <div class="later-claim">Time and labour are captured from the same utterance as everything else.</div>
+        <div class="later-status">Bet, and the most exposure-sensitive item on the board. Revisit only once trust is demonstrably earned.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HARD NOS ============ -->
+  <section class="band">
+    <div class="band-head">
+      <span class="band-title">Hard Nos</span>
+      <span class="band-when">Declined for four quarters · documented so they stay declined</span>
+      <p class="band-note">What a roadmap declines is the argument. Two of these were asked for by the buyer. One came from <em>our own field research</em>, and that is the call worth defending.</p>
+    </div>
+
+    <div class="nos">
+
+      <article class="no">
+        <div class="no-head">
+          <span class="no-mark">NO 1</span>
+          <span class="no-title">Offline-first mobile for poor-connectivity sites</span>
+          <span class="no-score">Impact 4 · Effort 4 · Field research</span>
+        </div>
+        <p class="no-why">Note that this is a <b>high-impact item being killed</b> — not a low score, but a bet we have not earned the right to make. It assumes the barrier is that mobile does not work well enough on site; that assumption is unvalidated, and a competing explanation is live. The asymmetry decides it: <b>if the study says connectivity, we lose two weeks. If it says exposure, we save a quarter.</b></p>
+      </article>
+
+      <article class="no">
+        <div class="no-head">
+          <span class="no-mark">NO 2</span>
+          <span class="no-title">Time-tracking module</span>
+          <span class="no-score">Impact 1 · Effort 5 · 3 contract negotiations</span>
+        </div>
+        <p class="no-why">Requested in three live negotiations, which makes it a <b>sales rock, not a product one</b>. It is a second product with its own payroll and compliance surface — and the most surveillance-shaped item on the board. Building a stopwatch for foremen in the quarter we ask them to trust the record works directly against KR1.</p>
+      </article>
+
+      <article class="no">
+        <div class="no-head">
+          <span class="no-mark">NO 3</span>
+          <span class="no-title">Subcontractor portal with document sharing</span>
+          <span class="no-score">Impact 1 · Effort 5 · Enterprise sales</span>
+        </div>
+        <p class="no-why">It expands <b>who</b> we serve before we have won the users we already have. Where-to-play names superintendents and foremen; subcontractors are a different segment with a different buying motion.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ THE LINE ============ -->
+  <div class="line">
+    <span class="line-label">The line this roadmap draws</span>
+    <p>
+      <b>Spend freely where a wrong assumption costs a sprint. Spend nothing where it costs a quarter of platform engineering.</b>
+      The three Now bets are cheap enough to run ahead of the evidence; offline-first is not. The field study is what converts it
+      from a Hard No into a Rock, or retires it for good.
+    </p>
+  </div>
+
+  <div class="foot">
+    <span>Meridian · Product Leadership Final Project</span>
+    <span>Deliverable 2 of 5</span>
+    <span>Horizon: Q4 2026 – Q3 2027</span>
+    <span>Scores shown post reality-check: effort doubled, impact halved</span>
+  </div>
+
+</div>
