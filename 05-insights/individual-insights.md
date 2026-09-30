@@ -32,7 +32,7 @@ _A few surprising discoveries or insights you gained from the course overall._
 
 _Your main "aha" moment during the project process._
 
-> I had built a solution for the problem I preferred to solve.
+> I had built a solution for the problem I preferred to solve..
 >
 > Frictionless capture is a product problem. It's the one I know how to fix, it's measurable, and it fits a roadmap. Exposure is not a product problem — it's about what a filed record costs the person who files it, and there's no feature that fixes it. So without noticing, I'd chosen the explanation that made my expertise relevant.
 >
