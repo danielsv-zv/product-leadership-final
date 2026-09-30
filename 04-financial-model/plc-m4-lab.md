@@ -29,14 +29,14 @@ What I'll commit to: I'm in all three negotiations and I explain the decision my
 - **What do I think their interest is? (Your best hypothesis):** Renewing contracts
 
 ## Observe then ask
-- **Write down the most useful thing your partner said in response.:** _(not filled in)_
+- **Write down the most useful thing your partner said in response.:** That the pressure wasn't the feature itself but the renewal date. She really needed something demonstrable in front of the client before the contract came up, not a finished build. That reframed the problem from "who gets the engineers" to "what has to exist by when".
 
 ## State disagreements
-- **Option 1:** _(not filled in)_
-- **Option 2:** _(not filled in)_
-- **Option 3 (if you find one):** _(not filled in)_
+- **Option 1:** Front-load instead of splitting: enterprise gets a concentrated block of engineering at the start of the quarter, the field build takes the remaining eight weeks uninterrupted. Same total capacity, no context-switching for either side.
+- **Option 2:** Trade scope instead of people: enterprise takes a narrower, demo-ready version of what they asked for, sized to the renewal conversation rather than to the full feature.
+- **Option 3:** One shared engineer working against both boards for a fixed window, with an agreed end date rather than an open-ended loan.
 
 ## Invite new options
-- **What we agreed:** _(not filled in)_
-- **If we did not agree, what was the blocking issue?:** _(not filled in)_
-- **Did you share your full interest, or only your position?:** _(not filled in)_
+- **What we agreed:** One engineer released to enterprise for two weeks, with a fixed end date. The remaining team and the ten-week window for offline-first stay intact.
+- **If we did not agree, what was the blocking issue?:** We agreed. The one thing left open was what happens if the renewal slips and enterprise needs the same engineer again next quarter — we didn't settle that.
+- **Did you share your full interest, or only your position?:** I opened with my position (four engineers, ten weeks) and only got to the interest underneath it in Round 3. Once I said the reason was the architectural window — offline-first is far cheaper to build now than to retrofit later — the conversation moved quickly. I should have led with that.
